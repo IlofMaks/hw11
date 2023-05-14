@@ -53,19 +53,6 @@ class Birthday(Field):
         if b_day.date() > day_today.date():
             raise ValueError("Birthday can't be more than current year and date.")
         self._value = b_day
-    
-    def days_until_birthday(self)->str:
-        if self.year:
-            next_birthday = self.replace(year=date.today().year)
-            if date.today() > next_birthday:
-                next_birthday = self.replace(year=date.today().year + 1)
-        else:
-            next_birthday = self.replace(year=date.today().year)
-            if date.today() > next_birthday:
-                next_birthday = self.replace(year=date.today().year + 1)
-        return (next_birthday - date.today()).days
-
-
 
     def __str__(self):
         return datetime.strftime(self.value, "%d.%m.%Y")
